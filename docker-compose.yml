@@ -5,6 +5,8 @@
 services:
   vote:
     build: ./vote
+    labels:
+      shipyard.route: '/vote'
     # use python rather than gunicorn for local dev
     command: python app.py
     depends_on:
@@ -20,6 +22,8 @@ services:
 
   result:
     build: ./result
+    labels:
+      shipyard.route: '/result'
     # use nodemon rather than node for local dev
     command: nodemon server.js
     depends_on:
@@ -72,6 +76,8 @@ services:
 
 volumes:
   db-data:
+    labels:
+      shipyard.deploy.disk.size: 1Gi
 
 networks:
   front-tier:
